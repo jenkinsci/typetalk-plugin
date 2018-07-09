@@ -19,7 +19,7 @@ import java.util.Arrays;
 
 public class Typetalk {
 
-	private static final String BASE_URL = "https://typetalk.in";
+	private static final String BASE_URL = "https://typetalk.com";
 	private static final String TOKEN_SERVER_URL = BASE_URL + "/oauth2/access_token";
 
 	private static final String SCOPE_TOPIC_POST = "topic.post";
