@@ -8,6 +8,9 @@ public class MessageEntity {
 	private String message;
 
 	@Key
+	private Long[] talkIds;
+
+	@Key
 	private Long replyTo;
 
 	@Key
@@ -19,6 +22,14 @@ public class MessageEntity {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+	public Long[] getTalkIds() {
+		return talkIds;
+	}
+
+	public void setTalkIds(Long[] talkIds) {
+		this.talkIds = talkIds;
 	}
 
 	public Long getReplyTo() {

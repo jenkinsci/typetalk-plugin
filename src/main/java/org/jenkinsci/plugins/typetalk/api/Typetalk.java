@@ -75,10 +75,11 @@ public class Typetalk {
 	/**
 	 * Typetalkにメッセージを通知する
 	 */
-	public int postMessage(final Long topicId, final String message) throws IOException {
+	public int postMessage(final Long topicId, final String message, final Long talkId) throws IOException {
 		final GenericUrl url = new PostMessageUrl(topicId);
 		final MessageEntity entity = new MessageEntity();
 		entity.setMessage(message);
+		entity.setTalkIds(new Long[]{talkId});
 
 		final HttpContent content = new JsonHttpContent(JSON_FACTORY, entity);
 		final HttpRequest request = createRequestFactory().buildPostRequest(url, content);

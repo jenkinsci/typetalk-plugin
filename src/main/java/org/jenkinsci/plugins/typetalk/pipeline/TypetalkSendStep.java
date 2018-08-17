@@ -17,6 +17,7 @@ public class TypetalkSendStep extends AbstractStepImpl {
 
     private final @Nonnull String name;
     private final @Nonnull Long topicId;
+    private final @Nonnull Long talkId;
 
     @Nonnull
     public String getName() {
@@ -28,10 +29,16 @@ public class TypetalkSendStep extends AbstractStepImpl {
         return topicId;
     }
 
+    @Nonnull
+    public Long getTalkId() {
+        return talkId;
+    }
+
     @DataBoundConstructor
-    public TypetalkSendStep(@Nonnull String name, @Nonnull Long topicId) {
+    public TypetalkSendStep(@Nonnull String name, @Nonnull Long topicId, @Nonnull Long talkId) {
         this.name = name;
         this.topicId = topicId;
+        this.talkId = talkId;
     }
 
     @Extension
@@ -67,7 +74,7 @@ public class TypetalkSendStep extends AbstractStepImpl {
 
         @Override
         protected Void run() throws Exception {
-            new NotifyDelegate(step.name, step.topicId, listener, run).notifyResult();
+            new NotifyDelegate(step.name, step.topicId, step.talkId, listener, run).notifyResult();
             return null;
         }
 

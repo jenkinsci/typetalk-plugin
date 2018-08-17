@@ -16,6 +16,7 @@ public class TypetalkBuildWrapperStep extends AbstractStepImpl {
 
     private final @Nonnull String name;
     private final @Nonnull Long topicId;
+    private final @Nonnull Long talkId;
     private boolean notifyStart;
     private String notifyStartMessage;
     private boolean notifyEnd;
@@ -29,6 +30,11 @@ public class TypetalkBuildWrapperStep extends AbstractStepImpl {
     @Nonnull
     public Long getTopicId() {
         return topicId;
+    }
+
+    @Nonnull
+    public Long getTalkId() {
+        return talkId;
     }
 
     public boolean isNotifyStart() {
@@ -68,9 +74,10 @@ public class TypetalkBuildWrapperStep extends AbstractStepImpl {
     }
 
     @DataBoundConstructor
-    public TypetalkBuildWrapperStep(@Nonnull String name, @Nonnull Long topicId) {
+    public TypetalkBuildWrapperStep(@Nonnull String name, @Nonnull Long topicId, @Nonnull Long talkId) {
         this.name = name;
         this.topicId = topicId;
+        this.talkId = talkId;
     }
 
     @Extension
@@ -132,7 +139,7 @@ public class TypetalkBuildWrapperStep extends AbstractStepImpl {
 
         Callback(TypetalkBuildWrapperStep step, TaskListener listener, Run run) {
             this.step = step;
-            delegate = new BuildWrapperDelegate(step.name, step.topicId, listener, run);
+            delegate = new BuildWrapperDelegate(step.name, step.topicId, step.talkId, listener, run);
         }
 
         @Override

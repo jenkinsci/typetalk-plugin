@@ -16,13 +16,16 @@ public class BuildWrapperDelegate {
 
     private final Long topicId;
 
+    private final Long talkId;
+
     private final TaskListener listener;
 
     private final Run run;
 
-    public BuildWrapperDelegate(String name, Long topicId, TaskListener listener, Run run) {
+    public BuildWrapperDelegate(String name, Long topicId, Long talkId, TaskListener listener, Run run) {
         this.name = name;
         this.topicId = topicId;
+        this.talkId = talkId;
         this.listener = listener;
         this.run = run;
     }
@@ -39,7 +42,7 @@ public class BuildWrapperDelegate {
                 message = run.getEnvironment(listener).expand(notifyStartMessage);
             }
 
-            Typetalk.createFromName(name).postMessage(topicId, message);
+            Typetalk.createFromName(name).postMessage(topicId, message, talkId);
         }
     }
 
@@ -55,7 +58,7 @@ public class BuildWrapperDelegate {
                 message = run.getEnvironment(listener).expand(notifyEndMessage);
             }
 
-            Typetalk.createFromName(name).postMessage(topicId, message);
+            Typetalk.createFromName(name).postMessage(topicId, message, talkId);
         }
     }
 
