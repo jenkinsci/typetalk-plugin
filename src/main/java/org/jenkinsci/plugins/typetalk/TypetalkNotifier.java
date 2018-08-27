@@ -41,11 +41,11 @@ public class TypetalkNotifier extends Notifier {
 	@Override
 	public boolean perform(AbstractBuild<?, ?> build, Launcher launcher, BuildListener listener)
 			throws InterruptedException, IOException {
-				Long[] talkIds = new Long[1];
+				Long talkIdLong = null;
 				if (StringUtils.isNotEmpty(talkId)) {
-					talkIds[0] = Long.parseLong(talkId);
+					talkIdLong = Long.parseLong(talkId);
 				}
-				new NotifyDelegate(name, Long.valueOf(topicNumber), talkIds[0] , listener, build).notifyResult();
+				new NotifyDelegate(name, Long.valueOf(topicNumber), talkIdLong , listener, build).notifyResult();
 		return true;
 	}
 
